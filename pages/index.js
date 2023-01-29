@@ -23,7 +23,7 @@ function Home() {
     const provider = new ethers.providers.JsonRpcProvider();
     // will connext to particular network
     // json rpc api remote procedure call
-    const nfTokenContract = new ethers.Contract(ContractInfo.nfContractAddress, NFTAbi.abi, provider);
+    const nfTokenContract = new ethers.Contract(ContractInfo.nftContractAddress, NFTAbi.abi, provider);
     const marketContract = new ethers.Contract(ContractInfo.nftMarketContractAddress, MarketAbi.abi, provider);
 
     const data = await marketContract.fetchMarketItems();
@@ -63,7 +63,7 @@ function Home() {
     const marketContract = new ethers.Contract(ContractInfo.nftMarketContractAddress, MarketAbi.abi, signer);
 
     const price = ethers.utils.parseUnits(nft.price.toString(), 'ether');
-    const transaction = await marketContract.createMarketSale(ContractInfo.nfContractAddress, nft.tokenId, { value: price });
+    const transaction = await marketContract.createMarketSale(ContractInfo.nftContractAddress, nft.tokenId, { value: price });
     // await transaction.wait(1);
     await transaction.wait();
     loadNFTs();
